@@ -3,17 +3,20 @@ import math
 
 def fermat(n):
     x = int(math.sqrt(n))
-    found = False
-    while found == False:
-        x+=1
+    x += 1
+    y = x**2 - n
+
+    while int(math.sqrt(y))**2 != y:
+        x += 1
         y = x**2 - n
-        if(int(math.sqrt(y))**2 == y):
-            found=True
-            y = int(math.sqrt(y))
+
+    y = int(math.sqrt(y))
     v = x+y
     u = x-y
 
-    return v,u
+    return v, u
+
+
 
 def f_po(x,n):
     return (x**2 + 1)%n
@@ -23,6 +26,7 @@ def mcd_po(x1,x2,n):
 
 def pollard(n):
     x1, x2, mcd = 1,1,1
+    
     while mcd == 1 :
         x1=f_po(x1,n)
         x2=f_po(f_po(x2,n),n)
