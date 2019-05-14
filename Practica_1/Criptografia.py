@@ -32,55 +32,6 @@ def calc2(a,b,m):
 
     return s
 
-"""
-calc(2,10,1000)
-calc(23,12,3457)
-calc(135,531,12345)
-calc(12345,531,123456789)
-calc(123456789,531,112233445566778899)
-calc(1234,4321,9876)
-calc(123456,654321,987654)
-calc(12345678,87654321,98765432)
-calc(123456789,987654321,9876543210)"""
-
-#calc2(203956878356401977405765866929034577280193993314348263094772646453283062722701277632936616063144088173312372882677123879538709400158306567338328279154499698366071906766440037074217117805690872792848149112022286332144876183376326512083574821647933992961249917319836219304274280243803104015000563790123,643808006803554439230129854961492699151386107534013432918073439524138264842370630061369715394739134090922937332590384720397133335969549256322620979036686633213903952966175107096769180017646161851573147596390153,9876543210)
-
-"""calc2(2,10,11)
-calc2(2,12,13)
-calc2(2,14,15)
-calc2(2,16,17)
-calc2(2,20,21)
-calc2(2,22,23)
-calc2(2,24,25)
-#Con mod=numero_primo sale 1, de lo contrario sale otro numero
-"""
-
-#calc2(2,16471581891701794764704009719057349996270239948993452268812975037240586099924712715366967486587417803753916334331355573776945238871512026832810626226164346328807407669366029926221415383560814338828449642265377822759768011406757061063524768140567867350208554439342320410551341675119078050952, 16471581891701794764704009719057349996270239948993452268812975037240586099924712715366967486587417803753916334331355573776945238871512026832810626226164346328807407669366029926221415383560814338828449642265377822759768011406757061063524768140567867350208554439342320410551341675119078050953)
-
-#Con a cualquier base, elevado a p-1 mod p, es igual a 1
-
-
-"""#no es primo 2199733160881
-calc2(2,2199733160880,2199733160881)
-calc2(5,2199733160880,2199733160881)
-calc2(11,2199733160880,2199733160881)
-calc2(148564515,2199733160880,2199733160881)
-calc2(48674513,2199733160880,2199733160881)
-"""
-"""
-#561
-calc2(2,560,561)
-calc2(5,560,561)
-calc2(11,560,561)
-calc2(148564515,560,561)
-calc2(48674513,560,561)
-"""
-
-#calc2(101,35,561)
-#calc2(101,70,561)
-#calc2(101,140,561)
-#calc2(101,280,561)
-#calc2(101,560,561)
 
 #Cuando sale 1 puede ser primo o no.
 
@@ -92,16 +43,6 @@ def calc3(n):
     if((s*s)%n==1):
       print (s)
 
-"""calc3(33)
-calc3(34)
-calc3(35)
-calc3(36)
-calc3(37)
-calc3(38)
-calc3(39)
-calc3(109)
-calc3(41)
-calc3(43)"""
 
 #Cuando el numero es primo impar. La ecuacion x²=1 mod p, tiene 2 soluciones
 #Si p es producto de 2 primos impares, x²=1 mod n, tiene 4 soluciones
@@ -134,7 +75,7 @@ def miller_Rabin(p):
 
     if a == 1 or a == p-1:
         #print(p, "Es probable primo.")
-        return 1;
+        return 1
 
     else:
         for i in range(u-1):
@@ -143,14 +84,11 @@ def miller_Rabin(p):
 
             if a == p-1:
                 #print(p, "Es probable primo.")
-                return 1;
+                return 1
             if a == 1:
                 #print(p, "No es primo.")
-                return 0;
-
-        if(a != 1 and a != p-1):
-            #print(p, "No es primo.")
-            return 0;
+                return 0
+        return 0
 
 def miller_Rabin_checkSelf(p, max , flag):
     s = (p-1)/2
@@ -205,12 +143,12 @@ def miller_Rabin_checkSelf2(p, max , flag):
         u += 1
 
     for i in range(max):
-        a = random.randint(2,p-2)
-        a = calc2(a,s,p)
+        b = random.randint(2,p-2)
+        a = calc2(b,s,p)
 
         if a == 1 or a == p-1:
             res = 1
-            posibles_primos.append(a)
+            posibles_primos.append(b)
 
         else:
             for i in range(u-1):
@@ -219,7 +157,7 @@ def miller_Rabin_checkSelf2(p, max , flag):
 
                 if a == p-1:
                     res = 1
-                    posibles_primos.append(a)
+                    posibles_primos.append(b)
 
                 if a == 1:
                     res = 0
@@ -345,16 +283,18 @@ print(primos2)
 print("Ejercicio 7.1: ")
 print("Primos para: 1245172921232112343: ")
 primos = miller_Rabin_checkSelf2(1245172921232112343, 100, 1)
-
+print(primos)
 
 print("Ejercicio 7.2: ")
 print("Primos para: 9876126379174631985: ")
 primos = miller_Rabin_checkSelf2(9876126379174631985, 100, 1)
+print(primos)
 
 
 print("Ejercicio 8.1: ")
 print("Primos para: 3215031751: ")
 primos = miller_Rabin_checkSelf2(3215031751, 100, 1)
+print(primos)
 
 
 print("Ejercicio 8.2: ")
